@@ -9,6 +9,7 @@ iPhone向けエンドレス上昇ゲーム「無限昇進」の初期企画で�
 - `SOUND_GUIDE.md` — BGM・効果音の選定結果と実装仕様
 - `audio/` — 原音、AAC試聴版、ライセンス記録
 - `mock/` — ブラウザで操作できるゲームモック
+- `site/` — 公開用サイト（トップ・サポート・プライバシーポリシー・利用規約）。`git subtree push --prefix site origin gh-pages` で GitHub Pages（`gh-pages` ブランチ）へ公開
 
 ## モックの起動
 
