@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>無限昇進 — サウンド試聴</title>
+  <style>
+    :root { color-scheme: dark; --ink:#081421; --card:#122535; --lime:#d9ff43; --muted:#9eafba; }
+    * { box-sizing:border-box; }
+    body { margin:0; min-height:100vh; padding:48px 20px 80px; background:radial-gradient(circle at 20% 0,#173c53,transparent 38rem),var(--ink); color:#f8f4e5; font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans",sans-serif; }
+    main { width:min(920px,100%); margin:auto; }
+    .eyebrow { color:var(--lime); font-size:11px; font-weight:900; letter-spacing:.18em; }
+    h1 { margin:8px 0; font-size:clamp(38px,7vw,70px); letter-spacing:-.06em; }
+    .lead { color:var(--muted); line-height:1.7; }
+    h2 { margin-top:42px; font-size:18px; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:12px; }
+    article { padding:17px; border:1px solid #2c4659; border-radius:16px; background:rgba(18,37,53,.88); }
+    article strong { display:block; margin-bottom:4px; }
+    article span { display:block; min-height:32px; color:var(--muted); font-size:11px; line-height:1.5; }
+    audio { width:100%; height:34px; margin-top:13px; }
+    footer { margin-top:40px; padding-top:20px; border-top:1px solid #294151; color:#78909f; font-size:11px; }
+  </style>
+</head>
+<body>
+  <main>
+    <p class="eyebrow">AUDIO SELECTION v0.1</p>
+    <h1>無限昇進 サウンド試聴</h1>
+    <p class="lead">採用候補のBGMと効果音です。再生音量は端末側でも調整してください。すべてCC0素材です。</p>
+
+    <h2>BGM</h2>
+    <section class="grid">
+      <article><strong>タイトル</strong><span>Upbeat Title Theme Loop — 29.3秒</span><audio controls preload="metadata" src="preview/bgm-title.m4a"></audio></article>
+      <article><strong>プレイ</strong><span>City Loop — 56.4秒</span><audio controls preload="metadata" src="preview/bgm-gameplay.mp3"></audio></article>
+    </section>
+
+    <h2>UI・ゲーム進行</h2>
+    <section class="grid">
+      <article><strong>決定・開始</strong><span>明るい決定音</span><audio controls preload="metadata" src="preview/sfx-ui-select.m4a"></audio></article>
+      <article><strong>戻る</strong><span>短い戻る音</span><audio controls preload="metadata" src="preview/sfx-ui-back.m4a"></audio></article>
+      <article><strong>ポーズ・再開</strong><span>スイッチ感のある切替音</span><audio controls preload="metadata" src="preview/sfx-pause.m4a"></audio></article>
+      <article><strong>役職昇進</strong><span>控えめなチャイム</span><audio controls preload="metadata" src="preview/sfx-promotion.m4a"></audio></article>
+    </section>
+
+    <h2>アイテム</h2>
+    <section class="grid">
+      <article><strong>エナジーコーヒー</strong><span>長めのパワーアップ</span><audio controls preload="metadata" src="preview/sfx-item-coffee.m4a"></audio></article>
+      <article><strong>ノイズキャンセリング</strong><span>防御成立の確認音</span><audio controls preload="metadata" src="preview/sfx-item-headphones.m4a"></audio></article>
+      <article><strong>有給休暇</strong><span>下降音でスローを表現</span><audio controls preload="metadata" src="preview/sfx-item-paid-leave.m4a"></audio></article>
+      <article><strong>自己啓発本</strong><span>上昇音で高度加算を表現</span><audio controls preload="metadata" src="preview/sfx-item-book.m4a"></audio></article>
+    </section>
+
+    <h2>衝突・終了</h2>
+    <section class="grid">
+      <article><strong>シールド消費</strong><span>短いガラス質の破壊音</span><audio controls preload="metadata" src="preview/sfx-shield-break.m4a"></audio></article>
+      <article><strong>障害物へ衝突</strong><span>即時に分かる警告音</span><audio controls preload="metadata" src="preview/sfx-hit.m4a"></audio></article>
+      <article><strong>ゲームオーバー</strong><span>短い下降フィードバック</span><audio controls preload="metadata" src="preview/sfx-game-over.m4a"></audio></article>
+    </section>
+    <footer>原音・ライセンス・実装時の音量設計は SOUND_GUIDE.md と audio/LICENSES.md を参照してください。</footer>
+  </main>
+</body>
+</html>

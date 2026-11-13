@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+  <meta name="theme-color" content="#081421">
+  <title>無限昇進 — 操作モック</title>
+  <link rel="stylesheet" href="styles.css?v=20261109g">
+</head>
+<body>
+  <main class="demo-layout">
+    <section class="brief" aria-label="モック説明">
+      <p class="eyebrow">ENDLESS CAREER CLIMBER</p>
+      <h1>無限昇進</h1>
+      <p class="lead">上を目指すほど、<br>忙しくなる。</p>
+      <div class="instruction-card">
+        <span>HOW TO PLAY</span>
+        <p>画面を左右にスワイプして障害物を避けよう。ノボルは自動で昇り続けます。</p>
+      </div>
+      <p class="prototype-note">操作感を確認するための初期プロトタイプです。アート・数値は仮のものです。</p>
+    </section>
+
+    <section class="phone" aria-label="iPhoneゲームモック">
+      <div class="speaker" aria-hidden="true"></div>
+      <div class="screen" id="screen">
+        <canvas id="game" width="390" height="844" aria-label="無限昇進のゲーム画面"></canvas>
+        <button class="sound-button" id="soundButton" aria-label="音声をオフ" aria-pressed="false">♪</button>
+
+        <div class="hud hidden" id="hud">
+          <div class="hud-stat">
+            <span>HEIGHT</span>
+            <strong><b id="heightValue">0</b>m</strong>
+          </div>
+          <div class="rank-pill" id="rankValue">新人</div>
+          <button class="icon-button" id="pauseButton" aria-label="一時停止">Ⅱ</button>
+          <div class="speed" id="speedValue">SPEED ×1.0</div>
+        </div>
+
+        <section class="overlay title-screen" id="titleScreen">
+          <div class="title-cloud cloud-one"></div>
+          <div class="title-cloud cloud-two"></div>
+          <div class="title-content">
+            <p class="mini-title">ENDLESS CAREER CLIMBER</p>
+            <h2><span>無限</span>昇進</h2>
+            <p class="tagline" id="modeTagline">意識、高く。</p>
+            <p class="hero-quote">「上しか、見ていません。」</p>
+            <img class="hero-art" src="assets/character-noboru.png" alt="コーヒーを持って上昇するアゲ田ノボル">
+            <div class="mode-select hidden" id="modeSelect" role="group" aria-label="モード選択">
+              <button data-mode="normal" aria-pressed="true">通常</button>
+              <button data-mode="stretch" aria-pressed="false">ストレッチ🔥</button>
+              <button class="hidden" data-mode="overtime" aria-pressed="false">無限残業🌙</button>
+            </div>
+            <p class="mode-locked" id="modeLocked">🔒 部長（5,000m）到達でストレッチモード解放</p>
+            <button class="primary-button" id="startButton">昇進を始める <span>↗</span></button>
+            <p class="best">BEST <strong id="bestTitle">0m</strong></p>
+            <button class="ranking-button" id="titleRankingButton">🏆 ランキング</button>
+          </div>
+        </section>
+
+        <section class="overlay item-screen hidden" id="itemScreen">
+          <div class="item-screen-content">
+            <p class="mini-title">CAREER SUPPORT</p>
+            <h2>使える福利厚生</h2>
+            <p class="item-intro">触れるだけで即時発動。<br>上手に使って、さらに上へ。</p>
+            <div class="item-list">
+              <article>
+                <img src="assets/item-energy-coffee.png" alt="エナジーコーヒー">
+                <div><h3>エナジーコーヒー</h3><p>5秒間、無敵＆加速</p></div>
+                <b>5s</b>
+              </article>
+              <article>
+                <img src="assets/item-noise-cancel.png" alt="ノイズキャンセリング">
+                <div><h3>ノイズキャンセリング</h3><p>障害物を1回だけ無効化</p></div>
+                <b>×1</b>
+              </article>
+              <article>
+                <img src="assets/item-paid-leave.png" alt="有給休暇申請書">
+                <div><h3>有給休暇</h3><p>5秒間、世界がスローに</p></div>
+                <b>5s</b>
+              </article>
+              <article>
+                <img src="assets/item-self-help-book.png" alt="自己啓発本">
+                <div><h3>自己啓発本</h3><p>読んだ気になって高度＋250m</p></div>
+                <b>+250</b>
+              </article>
+            </div>
+            <button class="primary-button" id="briefingStartButton">理解して昇進 <span>↗</span></button>
+            <button class="text-button" id="briefingBackButton">タイトルへ戻る</button>
+          </div>
+        </section>
+
+        <section class="overlay modal-overlay hidden" id="pauseScreen">
+          <div class="modal">
+            <p class="modal-kicker">COFFEE BREAK</p>
+            <h2>ちょっと休憩</h2>
+            <p>成長は一時停止中です。</p>
+            <p class="noboru-line" id="pauseLine">「戦略的休息中。」</p>
+            <button class="primary-button" id="resumeButton">業務を再開</button>
+            <button class="text-button" id="pauseToTitle">タイトルへ</button>
+          </div>
+        </section>
+
+        <section class="overlay modal-overlay hidden" id="gameOverScreen">
+          <div class="modal game-over-modal">
+            <div class="failure-icon">!</div>
+            <p class="modal-kicker danger">CAREER PAUSED</p>
+            <h2>成長が<br>止まりました</h2>
+            <p class="noboru-line" id="gameOverLine">「これは失敗ではない。学びのピボットだ。」</p>
+            <div class="result-row">
+              <div><span>今回の高度</span><strong id="finalHeight">0m</strong></div>
+              <div><span>役職</span><strong id="finalRank">新人</strong></div>
+              <div class="global-rank hidden" id="globalRank"><span>全国順位</span><strong>—</strong></div>
+            </div>
+            <p class="new-best hidden" id="newBest">NEW BEST!</p>
+            <p class="stretch-unlocked hidden" id="stretchUnlocked">🔥 ストレッチモード解放！ タイトルで選べます</p>
+            <figure class="failure-capture hidden" id="failureCaptureBox">
+              <img id="failureCapture" alt="失敗した瞬間の自動キャプチャ">
+              <figcaption>失敗した瞬間を自動キャプチャしました</figcaption>
+            </figure>
+            <div class="capture-actions hidden" id="captureActions">
+              <button id="saveCaptureButton">画像を保存</button>
+              <button id="shareCaptureButton">共有する</button>
+            </div>
+            <button class="primary-button" id="retryButton">もう一度昇進 <span>↗</span></button>
+            <div class="over-links">
+              <button class="text-button" id="overRankingButton">ランキング</button>
+              <button class="text-button" id="overToTitle">タイトルへ</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="overlay modal-overlay ranking-overlay hidden" id="rankingScreen" aria-label="ランキング">
+          <div class="modal ranking-modal">
+            <p class="modal-kicker">GAME CENTER</p>
+            <h2>昇進ランキング</h2>
+            <div class="ranking-tabs" role="tablist">
+              <button role="tab" aria-selected="true" data-board="alltime">歴代ベスト</button>
+              <button role="tab" aria-selected="false" data-board="weekly">今週</button>
+              <button role="tab" aria-selected="false" data-board="stretch">ストレッチ</button>
+              <button class="hidden" role="tab" aria-selected="false" data-board="overtime">残業</button>
+            </div>
+            <ol class="ranking-list" id="rankingList"></ol>
+            <p class="ranking-note">モック表示です。実機ではGame Centerのランキング画面が開きます。</p>
+            <button class="primary-button" id="rankingCloseButton">閉じる</button>
+          </div>
+        </section>
+
+        <div class="touch-guide hidden" id="touchGuide" aria-hidden="true">
+          <div><b>‹</b><i></i><b>›</b><span>左右にスワイプ</span></div>
+        </div>
+        <div class="effect-chip hidden" id="effectChip">
+          <img id="effectIcon" src="assets/item-energy-coffee.png" alt="">
+          <span id="effectText">無敵 5.0s</span>
+        </div>
+        <div class="pickup-toast hidden" id="pickupToast">エナジーコーヒー！</div>
+        <aside class="ad-slot" aria-label="広告掲載予定領域">
+          <span>ADVERTISEMENT</span>
+          <strong>320 × 50</strong>
+        </aside>
+      </div>
+      <div class="home-indicator" aria-hidden="true"></div>
+    </section>
+  </main>
+  <script src="game.js?v=20261109g"></script>
+</body>
+</html>
